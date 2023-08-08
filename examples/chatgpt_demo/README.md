@@ -5,8 +5,12 @@
 | ESP32-S3-BOX      | YES            |
 | ESP32-S3-BOX-Lite | YES            |
 
-
 In this example, we are utilizing the OpenAI API in conjunction with an ESP-BOX to create a voice-based chatbot. The ESP-BOX is a device or system that incorporates an ESP32-S3 microcontroller. The purpose of this implementation is to enable users to communicate with the chatbot using spoken language. The process involves capturing audio input from the user, sending it to the OpenAI API for processing, and receiving a response that is then converted into speech and played back to the user.
+
+# flash
+安装[esptool](https://blog.csdn.net/espressif/article/details/105028809),在chatgpt_demo目录下执行以下指令
+
+esptool -p COM3 --chip esp32s3 -b 460800 --before default_reset --after hard_reset write_flash --flash_mode dio --flash_size 16MB --flash_freq 80m 0x0 build/bootloader/bootloader.bin 0x8000 build/partition_table/partition-table.bin 0xd000 build/ota_data_initial.bin 0x10000 build/chatgpt_demo.bin 0x900000 build/storage.bin 0xb00000 build/srmodels/srmodels.bin 0x700000 factory_nvs/build/factory_nvs.bin
 
 ## How to use example
 * ESP-IDF version [master](https://github.com/espressif/esp-idf)
